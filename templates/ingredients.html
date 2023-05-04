@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+  .descr-card{
+      max-width: 1200;
+      margin: 10px;
+    }
+    .bottom {
+      height: 448px;
+    }
+</style>
+</head>
+<body>
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+    <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+      <a href="/" class="w3-bar-item w3-button">The Cocktail Connoisseur</a>
+      <div class="w3-right w3-hide-small">
+        <a href="/cocktails" class="w3-bar-item w3-button">Cocktails</a>
+      </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px; padding-top: 250px;" id="home">
+  <div class="w3-display-middle w3-padding w3-black w3-opacity-min">
+    <h1 class="w3-xxlarge w3-text-white"><b>{{ingredient.name}}</b></h1>
+  </div>
+</header>
+
+<div class="w3-row-padding">
+  <div class="w3-card w3-white descr-card">
+    <div class="w3-container">
+      <h3>Description:</h3>
+      {% if ingredient.descr %}
+        <p>{{ ingredient.descr}}</p>
+      {% else %}
+        <p>No description available</p>
+      {% endif %}
+    </div>
+  </div> 
+</div>
+
+
+<div class="w3-row-padding">
+  <div class="w3-third w3-padding">
+    <div class="w3-card w3-white bottom">
+      <div class="w3-container">
+        {% if ingredient.alc == "Yes" %}
+          <img class="w3-image" src="https://res.cloudinary.com/teepublic/image/private/s--kD2owg39--/t_Resized%20Artwork/c_fit,g_north_west,h_1054,w_1054/co_ffffff,e_outline:53/co_ffffff,e_outline:inner_fill:53/co_bbbbbb,e_outline:3:1000/c_mpad,g_center,h_1260,w_1260/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1548307823/production/designs/4069142_1.jpg">
+        {% else %}
+          <img class="w3-image" src="https://thumbs.dreamstime.com/b/alcohol-free-vector-icon-product-packaging-symbol-isolated-white-round-prohibited-stamp-no-percents-contains-bottle-210143103.jpg">            
+        {% endif %}
+      </div>
+    </div> 
+  </div>
+  <div class="w3-third w3-padding">
+    <div class="w3-card w3-white bottom">
+      <div class="w3-container">
+        <h3>What is the ABV?</h3>
+        {% if ingredient.abv %}
+          <p>This ingredient is {{ingredient.abv}}%. Alcohol by volume (ABV) is a measure of the percentage of ethanol (alcohol) present in an alcoholic beverage, such as beer, wine, or spirits. It is a standard way of measuring the alcohol content of beverages and is expressed as a percentage of the total volume of the beverage. For example, a beer with 5% ABV means that 5% of the total volume of the beer is alcohol.</p>
+        {% elif ingredient.alc == "Yes" %}
+          <p>The ABV was not provided</p>
+        {% else %}
+          <p>This ingredient is alcohol free!</p>
+        {% endif %}
+      </div>
+    </div> 
+  </div>
+  <div class="w3-third w3-padding">
+    <div class="w3-card w3-white bottom">
+      <img class="w3-image" src="https://media.istockphoto.com/id/1394230154/vector/doodle-cartoon-mai-tai-cocktail-and-ingredients-composition-two-types-of-rum-orgeat-almond.jpg?s=612x612&w=0&k=20&c=Qd9GaYWgaINGeJ5eMuvWrOFuctoshYSKZckpJqyGjQ0=">
+    </div>
+  </div>
+</div>
+
+<!-- End page content -->
+</div>
+
+</body>
+</html>

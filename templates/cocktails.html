@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+    .w3-row-padding{
+      justify-content: center;
+      display: inline;
+    }
+    .ingredient-card{
+      height: 300px;
+      width: 400px;
+      margin: 0 auto;
+    }
+    .w3-card .w3-container{
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .instr-card{
+      max-width: 1200;
+      margin: 10px;
+    }
+    .bottom {
+      height: 448px;
+    }
+</style>
+</head>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+    <a href="/" class="w3-bar-item w3-button">The Cocktail Connoisseur</a>
+    <div class="w3-right w3-hide-small">
+      <a href="/cocktails" class="w3-bar-item w3-button">Cocktails</a>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-wide" style="max-width:1500px; padding-top: 250px;" id="home">
+  <div class="w3-display-middle w3-padding w3-black w3-opacity-min">
+    <h1 class="w3-xxlarge w3-text-white"><b>{{drink.name}}</b></h1>
+  </div>
+</header>
+
+<div style="text-align:center">
+  <img class="w3-image" src="{{drink.image}}" width="500" height="500" style="display:block; margin: 0 auto; margin-top: -25px; margin-bottom: 25px;">
+</div>
+
+<div class="w3-container">
+  <h2 class="w3-center">Ingredients:</h2>
+</div>
+
+
+<div class="w3-row-padding">
+  {% for ingr in ingrs %}
+    <div class="w3-third w3-padding">
+      <a href="/ingredients/{{ ingr.name }}">
+        <div class="w3-card w3-white">
+          <div class="w3-container ingredient-card">
+            <h3>{{ ingr.name }}</h3>
+      </a>
+            {% if ingr.descr %}
+              <p>{{ ingr.descr | truncate(350)}}</p>
+            {% else %}
+              <p>No description available</p>
+            {% endif %}
+          </div>
+        </div> 
+    </div>
+    {% if loop.index % 3 == 0 %}
+      </div><div class="w3-row-padding">
+    {% elif loop.last and loop.index % 3 != 0 %}
+      </div>
+      <style>
+        .ingredient-card:last-child {
+          justify-content: center;
+        }
+      </style>
+    {% endif %}
+  {% endfor %}
+</div>
+
+
+
+<div class="w3-row-padding">
+    <div class="w3-card w3-white instr-card">
+      <div class="w3-container">
+        <h3>Instructions:</h3>
+        {% if drink.instr %}
+          <p>{{ drink.instr}}</p>
+        {% else %}
+          <p>No instructions available</p>
+        {% endif %}
+      </div>
+    </div> 
+</div>
+
+
+<div class="w3-row-padding">
+  <div class="w3-third w3-padding">
+    <div class="w3-card w3-white bottom">
+      <div class="w3-container">
+        <h3>Is it alcoholic?</h3>
+        {% if drink.is_alc == "Alcoholic" %}
+          <p>Yes! Whether you prefer the bold flavors of a classic cocktail or the crisp taste of a refreshing beer, there's nothing quite like enjoying a drink with friends and loved ones. But remember, with great taste comes great responsibility. Always enjoy alcohol in moderation and never drink and drive. As you savor each sip, take the time to appreciate the craftsmanship and artistry that goes into each and every drink. And most importantly, remember to always drink responsibly and respect your limits. Cheers to a fun and safe night!</p>
+        {% else %}
+          <p>No! Looking for a drink recipe that's alcohol-free and perfect for anyone to enjoy? Look no further than this delicious mocktail recipe! This drink is the perfect choice for those who want all the flavor without the alcohol. So go ahead and mix one up for your next gathering or just as a treat for yourself – you won't be disappointed!</p>
+        {% endif %}
+      </div>
+    </div> 
+  </div>
+  <div class="w3-third w3-padding">
+    <div class="w3-card w3-white bottom">
+      <img class="w3-image" src="https://img.freepik.com/premium-vector/vector-cartoon-illustration-glass-martini_574806-1158.jpg?w=2000">
+    </div>
+  </div>
+  <div class="w3-third w3-padding">
+    <div class="w3-card w3-white bottom">
+      <div class="w3-container">
+        <h3>What type of glass should I serve it in?</h3>
+          <p>This delicious drink is typically served in a {{drink.glass}}, but don't worry if you don't have one on hand. You can easily use any glass you have in your cupboard and still enjoy all the flavors and aromas of this refreshing beverage. Whether you choose a classic highball or a mason jar, you can still indulge in this delightful drink and impress your guests with your mixology skills. So go ahead and experiment with different glasses and find the perfect vessel to showcase this delicious drink.</p>
+      </div>
+    </div> 
+  </div>
+</div>
+
+
+<!-- End page content -->
+</div>
+
+</body>
+</html>
